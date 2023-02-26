@@ -5,16 +5,16 @@
 {% endblock %}
 
 {% block body %}
-<h1>Liste des véhicules</h1>
+<h1 class="mb-5">Liste des véhicules</h1>
 
-<table>
+<table class="table table-dark text-center">
     <thead>
-        <tr>
-            <th>Modèle</th>
-            <th>Marque</th>
-            <th>Couleur</th>
-            <th>Action</th>
-        </tr>
+      <tr>
+        <th scope="col">Modèle</th>
+        <th scope="col">Marque</th>
+        <th scope="col">Couleur</th>
+        <th scope="col">Action</th>
+      </tr>
     </thead>
     <tbody>
         {% for voiture in voitures %}
@@ -23,11 +23,11 @@
             <td>{{ voiture.marque.name }}</td>
             <td style="width: 25px; height: 25px; background: {{ voiture.couleur }};"></td>
             <td>
-                <a href="{{ path('userCar.view', {id: voiture.id}) }}">Voir</a>
+                <a class="text-light" style="text-decoration: none; text-transform:uppercase;" href="{{ path('userCar.view', {id: voiture.id}) }}">Voir</a>
             </td>
         </tr>
         {% endfor %}
     </tbody>
-</table>
+  </table>
 
 {% endblock %}
