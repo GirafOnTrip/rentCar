@@ -62,6 +62,9 @@ class CarModule extends AbstractModule
         $this->router->get('/admin/deleteMarque/{id:[\d]+}', [$marqueAction, 'deleteMarque'], 'marque.delete'); // Route nécessaire à la fonction DELETE de Marque
         $this->router->get('/admin/updateMarque/{id:[\d]+}', [$marqueAction, 'updateMarque'], 'marque.update'); // Aucune limite de nbr pour l'id {id:[\d+]}
 
+        // Les routes pour USER se trouve ici
+        $this->router->get('/user/listCar',[$carAction, 'userListCar'], 'userCar.list');
+        $this->router->get('/user/viewcar/{id:[\d]+}', [$carAction, 'userViewCar'], 'userCar.view');
 
         // Declaration des routes disponibles en method POST
         $this->router->post('/admin/updateMarque/{id:[\d]+}', [$marqueAction, 'updateMarque']); // Permet de Modifier le formulaire de Marque en méthode POST

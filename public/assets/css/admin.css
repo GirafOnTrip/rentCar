@@ -7,3 +7,8 @@ main {
     min-width: 100dvw;
     background-color: dimgray;
 }
+
+.brand{
+
+    margin-left: 12px;
+}

@@ -1,0 +1,33 @@
+{% extends 'user.layout.html.twig' %}
+
+{% block stylesheet %}
+    <link rel = "stylesheet" href="{{ assets('/assets/css/admin.css')}}" />
+{% endblock %}
+
+{% block body %}
+<h1>Liste des véhicules</h1>
+
+<table>
+    <thead>
+        <tr>
+            <th>Modèle</th>
+            <th>Marque</th>
+            <th>Couleur</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for voiture in voitures %}
+        <tr>
+            <td>{{ voiture.model }}</td>
+            <td>{{ voiture.marque.name }}</td>
+            <td style="width: 25px; height: 25px; background: {{ voiture.couleur }};"></td>
+            <td>
+                <a href="{{ path('userCar.view', {id: voiture.id}) }}">Voir</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

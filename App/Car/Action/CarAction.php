@@ -292,6 +292,16 @@ class CarAction
         ]);
     }
 
+    public function userListCar(ServerRequestInterface $request): string
+    {
+        $voitures = $this->repository->findAll(); // Permet de récupérer les véhicules en BDD
+
+        return $this->renderer->render('@car/listUser', [
+            "voitures" => $voitures
+        ]);
+    }
+
+
 
     //Documentation
 
@@ -320,6 +330,28 @@ class CarAction
             "voiture" => $voiture
         ]);
     }
+
+
+    public function userViewCar(ServerRequestInterface $request)
+    {
+
+        $id = $request->getAttribute('id'); // Permet de récupérer l'ID de la voiture passez en parametre
+        $voiture = $this->repository->find($id); // Permet de récupérer la voiture en fonction de son ID
+
+
+        // Si pas de vehicule retourne une erreur
+        if(!$voiture) {
+
+            return new Response(404,[],'Aucun vehicule ne correspond');
+        }
+
+        // ON REND LA VUE EN PASSANT EN PARAMETRE LE VEHICULE
+        return $this->renderer->render('@car/userViewCar', [ // Redirige vers la page userViewCar de la voiture en question 
+            "voiture" => $voiture
+        ]);
+    }
+
+
 
     /**
      * Check si une image est conforme au restrictions du serveur
