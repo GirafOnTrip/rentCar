@@ -11,7 +11,7 @@
     <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
         crossorigin="anonymous"></script>
-    {% block stylesheets %} 
+    {% block stylesheet %} 
     {% endblock %}
     <title>{{ siteName }}</title>
 </head>
@@ -51,17 +51,12 @@
                                 marques</a>
                         </li>
                     </ul>
-                </div>
-
-                <div id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-0 mb-lg-0">
+                    <ul class="navbar-nav">
                         <li>
                             <a class="nav-link active" aria-current="page" href="{{ path('admin.logout') }}">Deconnexion</a>
                         </li>
                     </ul>
                 </div>
-
-
 
             </div>
         </nav>
@@ -83,8 +78,8 @@
         {% endblock %}
 
     </main>
-    <footer>
-        <h1>Je suis le footer</h1>
+    <footer class="bg-dark w-100 d-flex justify-content-center align-items-center" style="height: 80px;">
+        <small style="color: white;">Powered by {{ siteName }} © Copyright 2023</small>
     </footer>
 </body>
 

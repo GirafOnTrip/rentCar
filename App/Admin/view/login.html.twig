@@ -1,8 +1,9 @@
 {% extends "layout.html.twig" %}
 
-{% block stylesheets %}
-    <link rel = "stylesheet" href="{{ assets('assets/css/style.css')}}" />
+{% block stylesheet %}
+<link rel="stylesheet" href="{{ assets('/assets/css/admin.css')}}">
 {% endblock %}
+
 
 {% block body %}
 
@@ -23,5 +24,6 @@
 
     <input type="submit" style="width: auto" class="btn btn-dark" value="Se connecter">
 </form>
+
 
 {% endblock %}

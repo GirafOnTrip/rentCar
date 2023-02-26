@@ -1,4 +1,9 @@
 {% extends "admin.layout.html.twig" %}
+
+{% block stylesheet %}
+    <link rel = "stylesheet" href="{{ assets('/assets/css/admin.css')}}" />
+{% endblock %}
+
 {% block body %}
 <!-- La méthode POST récupére le 'name' de l'input
     enctype="multipart/form-data" permet de récuperer l'image envoyer
