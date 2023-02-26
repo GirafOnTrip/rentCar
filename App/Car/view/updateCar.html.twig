@@ -1,0 +1,48 @@
+{% extends "admin.layout.html.twig" %}
+{% block body %}
+<!-- La méthode POST récupére le 'name' de l'input
+    enctype="multipart/form-data" permet de récuperer l'image envoyer
+     // Obligatoire pour récupérer un fichier -->
+<form method="POST" action="" class="card p-4" style="max-width: 500px;" enctype="multipart/form-data">
+    <div class="input-group input-group-sm mb-3">
+        <span class="input-group-text" id="inputGroup-sizing-sm">Modèle</span>
+        <input type="text" name="modele" class="form-control" aria-label="Sizing example input"
+            aria-describedby="inputGroup-sizing-sm" value="{{ voiture.model }}">
+    </div>
+    <div class="input-group input-group-sm mb-3">
+        <select name="marque">
+            <option value="null">---</option>
+
+            {% for marque in marques %}
+            {% if marque.id is same as (voiture.marque.id) %}
+            <option value="{{ marque.id }}" selected>{{ marque.name }}</option>
+            {% else %}
+            <option value="{{ marque.id}}">{{ marque.name }}</option>
+            {% endif %}
+            {% endfor %}
+            
+        </select>
+    </div>
+    <div class="input-group input-group-sm mb-3">
+        <span class="input-group-text" id="inputGroup-sizing-sm">Couleur</span>
+        <input type="color" name="couleur" class="form-control" aria-label="Sizing example input"
+            aria-describedby="inputGroup-sizing-sm" value="{{ voiture.couleur }}">
+    </div>
+
+    <div class="img-container">
+        <img style="width: 250px; height: 180px;" src="{{ assets('/assets/img/'~voiture.imgPath) }}">
+    </div>
+
+    <div class="input-group mb-3">
+        <div class="custom-file">
+          <input type="file" class="custom-file-input" id="inputGroupFile02" name="image">
+          <label class="custom-file-label" for="inputGroupFile02">Choose file</label>
+        </div>
+        <div class="input-group-append">
+        </div>
+      </div>
+
+    <input type="submit" value="Modifier" />
+</form>
+
+{% endblock %}

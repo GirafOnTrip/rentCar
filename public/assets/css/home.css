@@ -1,0 +1,25 @@
+.bg-image {
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    min-height: 100vh;
+    min-width: 100vw;
+
+    position: relative;
+}
+
+.welcome__title {
+
+    position: absolute;
+    z-index: 1;
+    left: 50%;
+    top: 70%;
+    transform: translate(-20%, -50%);
+    color: snow;
+    font-size: 70px;
+    font-weight: bolder;
+    text-align: right;
+   
+}

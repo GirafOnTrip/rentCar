@@ -1,0 +1,17 @@
+{% extends 'layout.html.twig' %}
+
+{% block stylesheet %}
+    <link rel = "stylesheet" href="{{ assets('assets/css/home.css') }}" />
+{% endblock %}
+
+{% set backgroundImageUrl = assets('assets/img/HomeCar.jpg') %}
+
+{% block body %}
+
+<main class="bg-image" style="background-image:url('{{ backgroundImageUrl }}');">
+
+    <h1 class="welcome__title"> Bienvenue sur {{ siteName }} </h1>
+
+</main>
+
+{% endblock %}

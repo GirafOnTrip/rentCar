@@ -1,0 +1,53 @@
+{% extends "admin.layout.html.twig" %}
+
+{% block stylesheet %}
+    <link rel = "stylesheet" href="{{ assets('assets/css/style.css')}}" />
+{% endblock %}
+
+{% block body %}
+
+<!-- La méthode POST récupére le 'name' de l'input
+    enctype="multipart/form-data" permet de récuperer l'image envoyer
+     // Obligatoire pour récupérer un fichier -->
+
+<form method="POST" action="" class="card p-4" style="max-width: 500px;" enctype="multipart/form-data">
+    <div class="input-group input-group-sm mb-3">
+        <span class="input-group-text" id="inputGroup-sizing-sm">Modèle</span>
+        <input type="text" name="modele" class="form-control" aria-label="Sizing example input"
+            aria-describedby="inputGroup-sizing-sm">
+    </div>
+
+    <div class="input-group input-group-sm mb-3">
+        <select name="marque">
+
+            <option value="" selected>---</option>
+
+            {% for marque in marques %}
+
+            <option value="{{ marque.id }}">{{ marque.name }}</option>
+
+            {% endfor %}
+            
+        </select>
+    </div>
+
+    <div class="input-group input-group-sm mb-3">
+        <span class="input-group-text" id="inputGroup-sizing-sm">Couleur</span>
+        <input type="color" name="couleur" class="form-control" aria-label="Sizing example input"
+            aria-describedby="inputGroup-sizing-sm">
+    </div>
+
+    <div class="input-group mb-3">
+        <div class="custom-file">
+          <input type="file" class="custom-file-input" id="inputGroupFile02" name="image">
+          <label class="custom-file-label" for="inputGroupFile02">Choose file</label>
+        </div>
+        <div class="input-group-append">
+          <span class="input-group-text">Upload</span>
+        </div>
+      </div>
+
+    <input type="submit" value="Ajouter">
+</form>
+
+{% endblock %}

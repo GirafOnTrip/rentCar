@@ -1,0 +1,26 @@
+{% extends 'admin.layout.html.twig' %}
+
+{% block body %}
+<h1>Liste des marques</h1>
+
+<table>
+    <thead>
+        <tr>
+            <th>Marque</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for marque in marques %}
+        <tr>
+            <td>{{ marque.name }}</td>
+            <td>
+                <a href="{{ path('marque.update', {id: marque.id}) }}">Modifier</a>
+                <a href="{{ path('marque.delete', {id: marque.id}) }}">Supprimer</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

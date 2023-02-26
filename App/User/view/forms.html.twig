@@ -1,0 +1,72 @@
+{% extends 'layout.html.twig' %}
+
+{% block stylesheet %}
+<link rel="stylesheet" href="{{ assets('/assets/css/userForm.css')}}">
+{% endblock %}
+
+{% block scripts %}
+    <script type="text/javascript" src="{{ assets('/assets/js/formSlider.js')}}"></script>
+{% endblock %}
+
+{% block body %}
+
+    <div class="userFormViewPort">
+
+        <div class="btn-group d-flex" role="group" aria-label="Basic example">
+
+            <button type="button" onclick="slider('connexion')" class="btn btn-light">Connexion</button>
+            <button type="button" onclick="slider('inscription')" class="btn btn-secondary">Inscription</button>
+
+        </div>
+
+        <div class="formContainer d-flex bg-dark">
+
+             {# CONNEXION #}
+     
+            <form method="POST" class="p-4 formConnexion" action="{{ path('user.connexion') }}">
+                <div class="form-floating mb-3">
+                    <input type="email" class="form-control" name="mail" id="floatingInput" placeholder="name@example.com">
+                    <label for="mail">Email address</label>
+                </div>
+                <div class="form-floating">
+                    <input type="password" class="form-control" name="mdp" id="floatingPassword" placeholder="Password">
+                    <label for="mail">Password</label>
+                </div>
+                <input type="submit" class="w-100 mt-3 btn btn-outline-light" value="Connexion">
+            </form>
+
+    
+            {# INSCRIPTION #}
+
+            <form method="POST" class="p-4 formInscription d-flex flex-column justify-content-center" action="{{ path('user.new') }}">
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" name="nom" id="nom" placeholder="Nom">
+                    <label for="nom">Nom</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" name="prenom" id="prenom" placeholder="Prenom">
+                    <label for="prenom">Prenom</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="mail" class="form-control" name="mail" id="mail" placeholder="name@example.com">
+                    <label for="mail">Email adress</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="password" class="form-control" name="mdp" id="mdp" placeholder="*******">
+                    <label for="mdp">Password</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="password" class="form-control" name="mdp_confirm" id="mdp_confirm" placeholder="*******">
+                    <label for="mdpConfirm">Comfirm Password</label>
+                </div>
+               
+                <input type="submit" class="btn btn-outline-light" value="Connexion">
+            </form>
+
+        </div>
+
+    </div>
+
+
+{% endblock %}
+
