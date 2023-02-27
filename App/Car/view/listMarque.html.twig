@@ -5,26 +5,26 @@
 {% endblock %}
 
 {% block body %}
-<h1>Liste des marques</h1>
+<h1 class="mb-5">Liste des marques</h1>
 
-<table>
+<table class="table table-dark text-center">
     <thead>
-        <tr>
-            <th>Marque</th>
-            <th>Action</th>
-        </tr>
+      <tr>
+        <th scope="col">Marque</th>
+        <th scope="col">Action</th>
+      </tr>
     </thead>
     <tbody>
         {% for marque in marques %}
         <tr>
             <td>{{ marque.name }}</td>
             <td>
-                <a href="{{ path('marque.update', {id: marque.id}) }}">Modifier</a>
-                <a href="{{ path('marque.delete', {id: marque.id}) }}">Supprimer</a>
+                <a class="text-light" style="text-decoration: none; text-transform:uppercase;" href="{{ path('marque.update', {id: marque.id}) }}">Modifier</a>
+                <a class="text-light" style="text-decoration: none; text-transform:uppercase;" href="{{ path('marque.delete', {id: marque.id}) }}">Supprimer</a>
             </td>
         </tr>
         {% endfor %}
     </tbody>
-</table>
+  </table>
 
 {% endblock %}

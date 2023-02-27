@@ -36,7 +36,7 @@ class AdminAuthMiddleware extends AbstractMiddleware
             //On recupere l'objet qui gere l'administrateur et connecté et qu'il s'agit bien d'un administrateur
             $auth = $this->container->get(AdminAuth::class);
 
-            if(!$auth->isLogged()) {
+            if(!$auth->isLogged() || !$auth->isAdmin()) {
 
                 // SI personne n'est connecté on renvoi un message en consequence
 
