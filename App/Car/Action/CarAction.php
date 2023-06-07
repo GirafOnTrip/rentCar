@@ -37,7 +37,7 @@ class CarAction
 
     public function __construct(RendererInterface $renderer, EntityManager $manager, Toaster $toaster, ContainerInterface $container, Router $router) // Ici j'injecte mes dépendances dans les parenthèses
     {
-        
+
         $this->renderer = $renderer; // Renderer permet d'afficher le rendu de la page 
         $this->manager = $manager; // Manager permet de sauvegarder des données en BDD
         $this->toaster = $toaster; // Ici l'assignation 
@@ -62,7 +62,7 @@ class CarAction
         //Si le formulaire à été soumis
         if ($method === 'POST') {
 
-            //On recuepere le contenu de $_POST (les valeurs saisies dans le formulaire)
+            //On recupere le contenu de $_POST (les valeurs saisies dans le formulaire)
             $data = $request->getParsedBody();
             //On recupere le contenu de $_FILES a l'index "image" (Les fichiers chargés dans le formulaire, avec un input de type file')
             $file = $request->getUploadedFiles()["image"];
@@ -72,7 +72,7 @@ class CarAction
             $errors = $validator
                 ->required('modele', 'couleur', 'marque')
                 ->getErrors();
-                //SI il y a des erreurs, on cree un Toast par erreur et on redirige l'utilisateur afin d'afficher les messages
+            //SI il y a des erreurs, on cree un Toast par erreur et on redirige l'utilisateur afin d'afficher les messages
             if ($errors) {
                 //Boucle sur le tableau d'erreurs
                 foreach ($errors as $error) {
@@ -95,7 +95,7 @@ class CarAction
             }
 
             // Si tout va bien avec le fichier, on recupere le nom 
-            
+
             $fileName = $file->getClientFileName();
 
             //On assemble le nom du fichier avec le chemin du dossier ou il sera enregistré
@@ -104,7 +104,7 @@ class CarAction
             $file->moveTo($imgPath);
 
             //Si le déplacement n'est pas possible on créer un Toast et on redirige
-            if(!$file->isMoved())  {
+            if (!$file->isMoved()) {
                 $this->toaster->makeToast("Une erreur s'est produite durant l'enregistrement, merci de réessayer !", Toaster::ERROR);
 
                 // return (new Response())
@@ -161,7 +161,7 @@ class CarAction
         if ($method === 'POST') {
 
             // getParsedBody() permet de récuperer les données $_POST
-            $data = $request->getParsedBody(); 
+            $data = $request->getParsedBody();
 
             //On recupere les fichiers chargés si il y en a, sinon un tableau vide
             $file = $request->getUploadedFiles();
@@ -173,7 +173,7 @@ class CarAction
                 ->getErrors();
 
             //On verifie si un fichier a ete chargé et qu'il n'y a pas eu d'erreur de chargement
-            if(sizeof($file) > 0 && $file['image']->getError() !== 4) {
+            if (sizeof($file) > 0 && $file['image']->getError() !== 4) {
 
                 // On recupere le nom de l'ancienne image du vehicule
                 $oldImg = $voiture->getImgPath();
@@ -187,7 +187,7 @@ class CarAction
                 $this->fileGuards($newImg);
                 //Si il y a une erreur avec le fichier, on retourne l'erreur
 
-                if($error) {
+                if ($error) {
                     return $error;
                 }
 
@@ -196,7 +196,7 @@ class CarAction
 
 
                 //SI l'image a bien ete deplace
-                if($newImg->isMoved())  {
+                if ($newImg->isMoved()) {
 
                     // On lie la nouvelle image avec le vehicuke
                     $voiture->setImgPath($imgName);
@@ -204,12 +204,10 @@ class CarAction
                     $oldPath = $this->container->get('img.basePath') . $oldImg;
 
                     unlink($oldPath);
-                    
                 }
-
             }
 
-           
+
 
 
             // FIN TEST
@@ -220,7 +218,7 @@ class CarAction
             $voiture->setModel($data['modele']) // Ici je modifie les données de la voiture en question ainsi que sa marque
                 ->setMarque($marque)
                 ->setCouleur($data['couleur']);
-               
+
 
             //TEST ENVOI OU NON DU FORMULAIRE
 
@@ -229,10 +227,9 @@ class CarAction
 
             // return (new Response)
             //     ->withHeader('Location', '/admin/listCar'); // Redirige vers la page listCar une fois le formulaire valider
-        
+
             //On redirige sur la liste des vehicules
             return $this->redirect('car.list');
-        
         }
 
         //Si le formulaire n'a pas ete soumis
@@ -277,7 +274,7 @@ class CarAction
 
         // return (new Response())
         //     ->withHeader('Location', '/admin/listCar'); // Redirige vers la page listCar une fois le formulaire valider
-   
+
         return $this->redirect('car.list');
     }
 
@@ -320,9 +317,9 @@ class CarAction
 
 
         // Si pas de vehicule retourne une erreur
-        if(!$voiture) {
+        if (!$voiture) {
 
-            return new Response(404,[],'Aucun vehicule ne correspond');
+            return new Response(404, [], 'Aucun vehicule ne correspond');
         }
 
         // ON REND LA VUE EN PASSANT EN PARAMETRE LE VEHICULE
@@ -340,9 +337,9 @@ class CarAction
 
 
         // Si pas de vehicule retourne une erreur
-        if(!$voiture) {
+        if (!$voiture) {
 
-            return new Response(404,[],'Aucun vehicule ne correspond');
+            return new Response(404, [], 'Aucun vehicule ne correspond');
         }
 
         // ON REND LA VUE EN PASSANT EN PARAMETRE LE VEHICULE
@@ -364,12 +361,11 @@ class CarAction
         // Handle Server error
         //Destructuration de tableau
         // S'assure qu'il n'y a pas eu d'erreur au chargement de l'image
-        if($file->getError() === 4) 
-        {
+        if ($file->getError() === 4) {
 
             $this->toaster->makeToast("Une erreur est survenu lors du chargement du fichier.", Toaster::ERROR);
-            return(new Response())
-            ->withHeader('Location', '/admin/addCar');
+            return (new Response())
+                ->withHeader('Location', '/admin/addCar');
         }
 
         //list permet de decomposer le contenu d'un tableau afin d'en extraire les valeurs et de les stocker dand des variables
@@ -379,24 +375,20 @@ class CarAction
 
         // Handle format error
         //On verifie que le format et le type de fichier correspondent aux formats et type autorisé, sinon on renvoi une erreur
-        if(!in_array($type, ['image']) or !in_array($format, ['jpg','jpeg','png']))
-        {
-                $this->toaster->makeToast("ERREUR : Le format du fichier n'est pas valide, merci de charger un .png, .jpeg ou .jpg", Toaster::ERROR);
-                return(new Response())
+        if (!in_array($type, ['image']) or !in_array($format, ['jpg', 'jpeg', 'png'])) {
+            $this->toaster->makeToast("ERREUR : Le format du fichier n'est pas valide, merci de charger un .png, .jpeg ou .jpg", Toaster::ERROR);
+            return (new Response())
                 ->withHeader('Location', '/admin/addCar');
-
         }
 
         // Handle Excessive size
         // On verifie que la taille du fichier en octets ne dépasse pas les 2Mo
-        if($file->getSize() > 22047674) 
-        {
+        if ($file->getSize() > 22047674) {
             $this->toaster->makeToast("Merci de choisir un fichier n'excédant pas 2Mo", Toaster::ERROR);
-            return(new Response())
-            ->withHeader('Location', '/admin/addCar');
+            return (new Response())
+                ->withHeader('Location', '/admin/addCar');
         }
 
         return true;
     }
 }
-

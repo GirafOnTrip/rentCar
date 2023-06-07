@@ -11,6 +11,7 @@ use GuzzleHttp\Psr7\ServerRequest;
 use Core\Framework\Middleware\RouterMiddleware;
 use Core\Framework\Middleware\NotFoundMiddleware;
 use Core\Framework\Middleware\AdminAuthMiddleware;
+use Core\Framework\Middleware\CSRFMiddleware;
 use Core\Framework\Middleware\TrailingSlashMiddleware;
 use Core\Framework\Middleware\RouterDispatcherMiddleware;
 use Core\Framework\Middleware\UserAuthMiddleware;
@@ -51,11 +52,12 @@ $app = new App($container, $modules);
 // Puis on ajoute les middlewares suivants en leur passant le container de dependances si besoin 
 $app->linkFirst(new TrailingSlashMiddleware())
     ->linkWith(new RouterMiddleware($container))
+    // ->linkWith(new CSRFMiddleware($container))
     ->linkWith(new AdminAuthMiddleware($container))
     ->linkWith(new RouterDispatcherMiddleware())
     ->linkWith(new NotFoundMiddleware)
     ->linkWith(new UserAuthMiddleware($container));
- 
+
 //Si l'index n'est pas executé a partir de la CLI (Command Line Interface)
 if (php_sapi_name() !== 'cli') {
 

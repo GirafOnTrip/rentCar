@@ -15,7 +15,7 @@ class DataBaseFactory
 
     $isDevMode = $container->get("doctrine.devmode");
     $dbparams = [
-      "host" => "127.0.0.1", // Rajout pour config mac // A mettre en commentaire sur windows
+      "host" => "127.0.0.1:8889", // Rajout pour config mac // A mettre en commentaire sur windows
       "driver" => $container->get("doctrine.driver"),
       "user" => $container->get("doctrine.user"),
       "password" => $container->get("doctrine.mdp"),

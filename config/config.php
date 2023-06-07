@@ -1,14 +1,15 @@
 <?php
 
 use Core\Toaster\Toaster;
-use Core\Toaster\ToasterTwigExtension;
 use Core\Db\DatabaseFactory;
 use Core\Session\PHPSession;
 use Doctrine\ORM\EntityManager;
 use Core\Framework\Router\Router;
 use Core\Session\SessionInterface;
+use Core\Toaster\ToasterTwigExtension;
 use Core\Framework\Renderer\RendererInterface;
 use Core\Framework\Router\RouterTwigExtension;
+use Core\Framework\Security\CSRFTwigExtension;
 use Core\Framework\Renderer\TwigRendererFactory;
 use Core\Framework\TwigExtensions\AssetsTwigExtension;
 
@@ -17,7 +18,7 @@ use Core\Framework\TwigExtensions\AssetsTwigExtension;
 return [
     "doctrine.user" => "root",
     "doctrine.dbname" => "rentcar",
-    "doctrine.mdp" => "",
+    "doctrine.mdp" => "root",
     "doctrine.driver" => "pdo_mysql",
     "doctrine.devmode" => "true",
 
@@ -27,7 +28,8 @@ return [
     "twig.extensions" => [
         RouterTwigExtension::class,
         ToasterTwigExtension::class,
-        AssetsTwigExtension::class
+        AssetsTwigExtension::class,
+        CSRFTwigExtension::class
     ],
 
     // On explique a PHP DI comment faire 
